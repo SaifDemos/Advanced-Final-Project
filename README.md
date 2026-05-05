@@ -9,15 +9,6 @@ A JavaFX desktop application for managing university academic operations: studen
 - PostgreSQL 12+ running at `127.0.0.1:5432`
 - PostgreSQL JDBC Driver `postgresql-42.7.10.jar` (co-located with JavaFX SDK lib dir)
 
-## Build & Run
-
-```bash
-./compile.sh     # Compile all Java files
-./run.sh         # Launch main application
-./run-sms.sh     # Launch SMS App (required for OTP password reset)
-./clean.sh       # Clean compiled .class files
-```
-
 ## Project Structure
 
 | Directory | Description |
