@@ -1,0 +1,307 @@
+/* ------------------------------ root -------------------------------------- */
+.root {
+  -fx-font-family: "Poppins";
+  -fx-background-color: #121212;
+  -fx-text-fill: white;
+  -fx-font-size: 14px;
+
+}
+
+/* ----------------------------- Label ------------------------------------- */
+
+.label {
+  -fx-text-fill: white;
+  /* -fx-font: ; */
+}
+
+/* ----------------------------- Button ------------------------------------- */
+
+.button {
+  -fx-background-color: #1f1f1f;
+  -fx-text-fill: white;
+  -fx-pref-height: 35px;
+  -fx-pref-width: 160px;
+  -fx-background-radius: 8;
+  -fx-border-radius: 8;
+  -fx-border-color: #2e2e2e;
+  -fx-border-width: 1;
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+  -fx-background-color: #2a2a2a;
+  -fx-effect: dropshadow(gaussian, rgba(122, 122, 122, 0.3), 20, 0, 0, 0);
+}
+
+.button:pressed {
+  -fx-background-color: #333333;
+}
+
+/* ---------------------------- Logout Button ----------------------------------- */
+
+#logout-btn {
+  -fx-background-color: #e53935;
+  -fx-text-fill: white;
+  -fx-pref-height: 35px;
+  -fx-pref-width: 120px;
+  -fx-background-radius: 8;
+  -fx-border-radius: 8;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+}
+
+#logout-btn:hover {
+  -fx-background-color: #c62828;
+}
+
+#logout-btn:pressed {
+  -fx-background-color: #b71c1c;
+}
+
+/* ---------------------------- TextField ----------------------------------- */
+
+.text-field,
+.password-field {
+  -fx-background-color: #1e1e1e;
+  -fx-prompt-text-fill: #888888;
+  -fx-text-fill: white;
+  -fx-background-radius: 8;
+  -fx-border-radius: 8;
+  -fx-border-color: #2e2e2e;
+  -fx-border-width: 1;
+  -fx-pref-height: 35px;
+}
+
+.text-field:focused,
+.password-field:focused {
+  -fx-border-color: #4fc3f7;
+}
+
+/* ---------------------------- Check Box ----------------------------------- */
+
+.check-box {
+  -fx-text-fill: white;
+}
+
+.check-box:selected .mark {
+  -fx-background-color: #4fc3f7;
+}
+
+/* ---------------------------- Combo Box ----------------------------------- */
+
+.combo-box {
+  -fx-background-color: #1e1e1e;
+  -fx-pref-height: 15px;
+  -fx-pref-width: 200px;
+  -fx-border-color: #2e2e2e;
+  -fx-border-radius: 8;
+
+  -fx-background-radius: 8px;
+  -fx-padding: 3 7 3 7;
+}
+
+.combo-box .list-cell {
+  -fx-background-color: #1e1e1e;
+  -fx-text-fill: #888888;
+}
+
+.combo-box-popup .list-view {
+  -fx-background-color: #1e1e1e;
+  -fx-border-color: #2e2e2e;
+  -fx-border-radius: 8;
+}
+
+.combo-box-popup .list-view .list-cell {
+  -fx-background-color: #1e1e1e;
+  -fx-text-fill: white;
+}
+
+.combo-box-popup .list-view .list-cell:hover {
+  -fx-background-color: #2a2a2a;
+  -fx-text-fill: white;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected {
+  -fx-background-color: #2a2a2a;
+  -fx-text-fill: white;
+}
+
+/* ------------------------------ Date Picker ------------------------------- */
+.date-picker {
+  -fx-background-color: #1e1e1e;
+  -fx-text-fill: white;
+  -fx-border-color: #2e2e2e;
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
+  -fx-padding: 5 10 5 10;
+  -fx-pref-width: 250px;
+}
+
+.date-picker .arrow-button {
+  -fx-background-color: #2a2a2a;
+  -fx-border-radius: 4px;
+  -fx-translate-x:5px;
+}
+
+.date-picker .arrow-button:hover {
+  -fx-border-color: #4fc3f7;
+}
+/*---popup---*/
+.date-picker-popup {
+  -fx-background-color: #1e1e1e;
+  -fx-border-color: #2e2e2e;
+  -fx-padding: 15px;
+}
+
+.date-picker-popup .calendar-grid {
+  -fx-background-color: #1e1e1e;
+}
+
+.date-picker-popup .month-year-pane {
+  -fx-background-color: #2a2a2a;
+}
+
+.date-picker-popup .day-cell {
+  -fx-background-color: #1e1e1e;
+  -fx-border-color: #2a2a2a;
+  -fx-text-fill: white;
+}
+
+.date-picker-popup .day-name-cell {
+  -fx-text-fill: #00aaff;
+  -fx-font-weight: bold;
+}
+
+.date-picker-popup .day-cell:hover {
+  -fx-background-color: #2a2a2a;
+}
+
+.date-picker-popup .selected {
+  -fx-background-color: #00aaff;
+  -fx-text-fill: black;
+}
+
+/* ------------------------------  ALert ------------------------------- */
+
+.dialog-pane {
+  -fx-background-color: #121212;
+  -fx-padding: 10;
+}
+
+.dialog-pane .content {
+  -fx-background-color: #121212;
+  -fx-font-size: 12px;
+}
+
+.dialog-pane .header-panel {
+  -fx-background-color: #121212;
+}
+
+/* ----------------------------- Button ------------------------------------- */
+.radio-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-padding: 5 10 5 5;
+}
+
+.radio-button .radio {
+    -fx-background-color: #121212;
+    -fx-border-color: #2a2a2a;
+    -fx-border-width: 2;
+    -fx-border-radius: 100;
+    -fx-padding: 4;
+}
+
+.radio-button:selected .radio .dot {
+    -fx-background-color: #4fc3f7;
+    -fx-background-insets: 0;
+}
+
+.radio-button:hover .radio {
+    -fx-border-color: #4fc3f7;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+   
+ 
+.table-view {
+
+    -fx-base: #121212; 
+    -fx-control-inner-background: #1e1e1e; 
+    -fx-background-color: transparent;
+    -fx-border-color: #2e2e2e;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+}
+
+/* -------------------------- Table Header -------------------------------- */
+.table-view .column-header-background {
+    -fx-background-color: #1f1f1f;
+    -fx-padding: 0 0 5px 0;
+    -fx-background-radius: 8 8 0 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-size: 35px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+
+/* ------------------ Table Rows and Cells ------------------- */
+.table-row-cell {
+    -fx-background-color: #1e1e1e;
+    -fx-cell-size: 30px;
+    -fx-text-fill: white;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #2a2a2a; 
+}
+
+
+.table-row-cell:odd {
+    -fx-background-color: #1a1a1a; 
+}
+
+.table-row-cell:odd:hover {
+   -fx-background-color: #2a2a2a; 
+}
+
+
+.table-row-cell:selected {
+    -fx-background-color:#317291;
+    -fx-text-fill: black;
+}
+
+
+.table-cell {
+    -fx-border-color: transparent #2a2a2a transparent transparent;
+    -fx-padding: 5px 10px 5px 10px;
+}
+
+
+/*----------------------------------------------------------------------------*/
+.separator {
+    -fx-padding: 10 0 10 0;
+}
+
+.separator .line {
+    -fx-border-color: #2e2e2e;
+    -fx-border-width: 1px 0 0 0; 
+}
