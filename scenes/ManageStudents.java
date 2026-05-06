@@ -273,25 +273,35 @@ public class ManageStudents {
             } else if (phone.length() != 11) {
                 Assistor.showErrorAlert("Error", "Invalid Phone Number", "Phone number must be 11 digits.");
                 return;
-            } else if (isNumberRegisteredStud(phone) || isNumberRegisteredLec(phone)) {
-                Assistor.showErrorAlert("Error", "Phone Already Registered",
-                        "This phone number is already registered. Please use another one.");
+            }  else if (birthDate.isEmpty()) {
+                Assistor.showErrorAlert("Error", "No BirthDate", "No BirthDate has been entered.");
                 return;
-            } else if (gender.isEmpty()) {
+            }  else if (gender.isEmpty()) {
                 Assistor.showErrorAlert("Error", "No Gender", "No Gender has been selected.");
                 return;
-            } else if (birthDate.isEmpty()) {
-                Assistor.showErrorAlert("Error", "No BirthDate", "No BirthDate has been entered.");
+            } else if(cgpaStr.isEmpty()) {
+                Assistor.showErrorAlert("Error", "No CGPA", "No CGPA has been entred.");
+                return;
+            }
+            float cgpaValue;
+            try {
+                cgpaValue = Float.parseFloat(cgpaStr);
+            } catch (NumberFormatException ex) {
+                Assistor.showErrorAlert("Error", "Invalid CGPA format", "CGPA must be a valid number");
+                return;
+            }
+            if (cgpaValue < 0.0f || cgpaValue > 4.0f) {
+                Assistor.showErrorAlert("Error", "Invalid CGPA", "CGPA must be from 0.0 to 4.0");
+                return;
+            } else if(isNumberRegisteredStud(phone) || isNumberRegisteredLec(phone)) {
+                Assistor.showErrorAlert("Error", "Phone Already Registered","This phone number is already registered. Please use another one.");
                 return;
             }
 
-            try {
-                float cgpaValue = Float.parseFloat(cgpaStr);
-                if (cgpaValue < 0.0f || cgpaValue > 4.0f) {
-                    Assistor.showErrorAlert("Error", "Invalid CGPA", "CGPA must be from 0.0 to 4.0");
-                    return;
-                }
+                
+                
 
+            try {
                 String autoEmail = "";
                 long generatedId = 0;
                 String firstName = name.trim().split("\\s+")[0].toLowerCase();
@@ -583,10 +593,12 @@ public class ManageStudents {
                     Assistor.showErrorAlert("Error", "Invalid Phone Number", "Phone number must be 11 digits.");
                     return;
                 }
-                if (!fPhone.getText().equals(origPhone)
-                        && (isNumberRegisteredStud(fPhone.getText()) || isNumberRegisteredLec(fPhone.getText()))) {
-                    Assistor.showErrorAlert("Error", "Phone Already Registered",
-                            "This phone number is already registered.");
+                if (fPass.getText().isEmpty()) {
+                    Assistor.showErrorAlert("Error", "No Password", "Password cannot be empty");
+                    return;
+                }
+                if (fCgpa.getText().isEmpty()) {
+                    Assistor.showErrorAlert("Error", "No CGPA", "CGPA cannot be empty");
                     return;
                 }
                 float checkCgpa = Float.parseFloat(fCgpa.getText());
@@ -603,6 +615,12 @@ public class ManageStudents {
                 String birthDate = (fBirth.getValue() != null) ? fBirth.getValue().toString() : "";
                 if (birthDate.isEmpty()) {
                     Assistor.showErrorAlert("Error", "No Birth Date", "No Birth Date selected");
+                    return;
+                }
+                if (!fPhone.getText().equals(origPhone)
+                        && (isNumberRegisteredStud(fPhone.getText()) || isNumberRegisteredLec(fPhone.getText()))) {
+                    Assistor.showErrorAlert("Error", "Phone Already Registered",
+                            "This phone number is already registered.");
                     return;
                 }
 

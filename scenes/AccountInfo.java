@@ -24,6 +24,37 @@ public class AccountInfo {
         this.userId = id;
     }
 
+    private boolean isNumberRegistered(String phone) {
+        String sql = "SELECT COUNT(*) FROM STUDENT WHERE PHONE = ?";
+        try (Connection con = DBUtil.dbConnect();
+                PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setString(1, phone);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String sql2 = "SELECT COUNT(*) FROM LECTURER WHERE PHONE = ?";
+        try (Connection con = DBUtil.dbConnect();
+                PreparedStatement pstmt = con.prepareStatement(sql2)) {
+
+            pstmt.setString(1, phone);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public Scene getScene(Stage stage) {
         Label AccountInfoLabel = new Label("Account Information");
         AccountInfoLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
@@ -142,6 +173,7 @@ public class AccountInfo {
         HBox.setHgrow(passTextField, Priority.ALWAYS);
 
         TextField phoneField = new TextField(phoneLabel.getText());
+        String originalPhone = phoneLabel.getText();
 
         // Real-time listener to restrict phone input to 11 digits
         phoneField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -182,12 +214,25 @@ public class AccountInfo {
             String newPass = passwordVisible ? passTextField.getText() : passField.getText();
             String newPhone = phoneField.getText();
 
-            if (newPass.isEmpty() || newPhone.isEmpty()) {
-                Assistor.showErrorAlert("Error", "Empty Fields", "Fields cannot be empty!");
+            boolean phoneChanged = !newPhone.equals(originalPhone);
+            boolean passChanged = !newPass.isEmpty();
+
+            if (!phoneChanged && !passChanged) {
+                Assistor.showWarningAlert("No Changes", "No Changes Made", "You didn't make any changes.");
+                return;
+            }
+
+            if (newPhone.isEmpty()) {
+                Assistor.showErrorAlert("Error", "Empty Fields", "Phone number cannot be empty!");
             } else if (newPhone.length() != 11) {
                 Assistor.showErrorAlert("Error", "Invalid Phone Number", "Phone number must be exactly 11 digits!");
+            } else if (phoneChanged && isNumberRegistered(newPhone)) {
+                Assistor.showErrorAlert("Error", "Phone Already Registered",
+                        "This phone number is already registered. Please use another one.");
+            } else if (newPass.isEmpty()) {
+                Assistor.showErrorAlert("Error", "Empty Fields", "Password cannot be empty!");
             } else {
-                // Database: Update Data in Oracle
+                // Database: Update Data
                 String updateSql = "UPDATE STUDENT SET PASSWORD = ?, PHONE = ? WHERE EMAIL = ?";
                 try (Connection con = DBUtil.dbConnect();
                         PreparedStatement pstmt = con.prepareStatement(updateSql)) {
@@ -200,6 +245,8 @@ public class AccountInfo {
                     if (rows > 0) {
                         passwordLabel.setText(newPass);
                         phoneLabel.setText(newPhone);
+                        Assistor.showSuccessAlert("Success", "Update Successful",
+                                "Account information updated successfully.");
                         dialog.close();
                     }
                 } catch (SQLException ex) {

@@ -1,4 +1,4 @@
 AGENTS.md
-.sh
-.class
+*.sh
+*.class
 .vscode/

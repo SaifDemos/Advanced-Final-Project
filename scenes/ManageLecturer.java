@@ -240,28 +240,33 @@ public class ManageLecturer {
             } else if (phone.length() != 11) {
                 Assistor.showErrorAlert("Error", "Invalid Phone Number", "Phone number must be 11 digits.");
                 return;
-            } else if (isNumberRegisteredLec(phone) || isNumberRegisteredStud(phone)) {
-                Assistor.showErrorAlert("Error", "Phone Already Registered",
-                        "This phone number is already registered. Please use another one.");
+            } else if (birthDate.isEmpty()) {
+                Assistor.showErrorAlert("Error", "No Birth Date", "No Birth Date has been entered.");
                 return;
             } else if (gender == null || gender.isEmpty()) {
                 Assistor.showErrorAlert("Error", "No Gender", "No Gender has been selected.");
-                return;
-            } else if (birthDate.isEmpty()) {
-                Assistor.showErrorAlert("Error", "No Birth Date", "No Birth Date has been entered.");
                 return;
             } else if (salaryStr.isEmpty()) {
                 Assistor.showErrorAlert("Error", "No Salary", "No Salary has been entered.");
                 return;
             }
+            float salaryValue;
+            try {
+                salaryValue = Float.parseFloat(salaryStr);
+            } catch (NumberFormatException ex) {
+                Assistor.showErrorAlert("Error", "Invalid Salary format", "Salary must be a valid number");
+                return;
+            }
+            if (salaryValue < 0) {
+                Assistor.showErrorAlert("Error", "Invalid Salary", "Salary must be a positive number");
+                return;
+            } else if (isNumberRegisteredLec(phone) || isNumberRegisteredStud(phone)) {
+                Assistor.showErrorAlert("Error", "Phone Already Registered",
+                        "This phone number is already registered. Please use another one.");
+                return;
+            }
 
             try {
-                float salaryValue = Float.parseFloat(salaryStr);
-                if (salaryValue < 0) {
-                    Assistor.showErrorAlert("Error", "Invalid Salary", "Salary must be a positive number");
-                    return;
-                }
-
                 String autoEmail = "";
                 long generatedId = 0;
                 String firstName = name.trim().split("\\s+")[0].toLowerCase();
@@ -507,10 +512,12 @@ public class ManageLecturer {
                     Assistor.showErrorAlert("Error", "Invalid Phone Number", "Phone number must be 11 digits.");
                     return;
                 }
-                if (!fPhone.getText().equals(origPhone)
-                        && (isNumberRegisteredLec(fPhone.getText()) || isNumberRegisteredStud(fPhone.getText()))) {
-                    Assistor.showErrorAlert("Error", "Phone Already Registered",
-                            "This phone number is already registered.");
+                if (fPass.getText().isEmpty()) {
+                    Assistor.showErrorAlert("Error", "No Password", "Password cannot be empty");
+                    return;
+                }
+                if (fSalary.getText().isEmpty()) {
+                    Assistor.showErrorAlert("Error", "No Salary", "Salary cannot be empty");
                     return;
                 }
                 float checkSalary = Float.parseFloat(fSalary.getText());
@@ -527,6 +534,12 @@ public class ManageLecturer {
                 String birthDate = (fBirth.getValue() != null) ? fBirth.getValue().toString() : "";
                 if (birthDate.isEmpty()) {
                     Assistor.showErrorAlert("Error", "No Birth Date", "No Birth Date selected");
+                    return;
+                }
+                if (!fPhone.getText().equals(origPhone)
+                        && (isNumberRegisteredLec(fPhone.getText()) || isNumberRegisteredStud(fPhone.getText()))) {
+                    Assistor.showErrorAlert("Error", "Phone Already Registered",
+                            "This phone number is already registered.");
                     return;
                 }
 

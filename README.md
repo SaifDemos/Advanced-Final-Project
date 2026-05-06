@@ -103,7 +103,7 @@ public String toString() {
 
 ### 4. Method Overloading
 
-**`utility/Assistor.java`** — `createWithBackground` is overloaded (same name, different parameters):
+**`utility/Assistor.java :27`** — `createWithBackground` is overloaded (same name, different parameters):
 
 ```java
 // Version 1: uses default dimensions (815 x 665)
@@ -117,7 +117,7 @@ public static StackPane createWithBackground(Node content, double opacity, doubl
 }
 ```
 
-**`utility/SceneAnimator.java`** — `fadeIn` is overloaded:
+**`utility/SceneAnimator.java :78`** — `fadeIn` is overloaded:
 ```java
 public static void fadeIn(Node node) { ... }          // default duration
 public static void fadeIn(Node node, Duration duration) { ... }  // custom duration
